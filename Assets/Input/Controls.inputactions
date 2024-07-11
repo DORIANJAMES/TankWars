@@ -31,6 +31,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Accelerate",
+                    "type": "Button",
+                    "id": "406827aa-f663-4fda-bde3-4a7abef12a74",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -38,8 +47,8 @@
                     "name": "",
                     "id": "bef08f27-180f-41bf-b751-f419572cdc6c",
                     "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
+                    "interactions": "Press",
+                    "processors": "Clamp(max=1)",
                     "groups": "Keyboard & Mouse",
                     "action": "Primary Fire",
                     "isComposite": false,
@@ -174,6 +183,17 @@
                     "processors": "",
                     "groups": "Keyboard & Mouse",
                     "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bbe3ebc8-8024-4dc4-8064-d4e2ef94e213",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard & Mouse",
+                    "action": "Accelerate",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

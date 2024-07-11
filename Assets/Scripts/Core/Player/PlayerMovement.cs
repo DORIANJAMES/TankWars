@@ -14,6 +14,7 @@ public class PlayerMovement : NetworkBehaviour
 
     [SerializeField] private Vector2 previousMovementInput;
 
+    private float canAccelerete = 1f;
     
 
     public override void OnNetworkSpawn()
@@ -21,6 +22,12 @@ public class PlayerMovement : NetworkBehaviour
         if (!IsOwner)
             return;
         inputReader.MovementEvent += HandleMove;
+        inputReader.AccelerateEvent += AccelaretionBool;
+    }
+
+    private void AccelaretionBool(float obj)
+    {
+        this.canAccelerete = obj;
     }
 
     public override void OnNetworkDespawn()
@@ -28,6 +35,7 @@ public class PlayerMovement : NetworkBehaviour
         if (!IsOwner)
             return;
         inputReader.MovementEvent -= HandleMove;
+        inputReader.AccelerateEvent -= AccelaretionBool;
     }
 
     private void Update()
@@ -44,7 +52,7 @@ public class PlayerMovement : NetworkBehaviour
         if (!IsOwner)
             return;
 
-        float moveDireciton = previousMovementInput.y * moveSpeed;
+        float moveDireciton = previousMovementInput.y * moveSpeed * canAccelerete;
         rb.velocity = (Vector2)bodyTransform.up * moveDireciton;
     }
 

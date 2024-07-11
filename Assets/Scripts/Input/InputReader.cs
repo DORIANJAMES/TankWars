@@ -8,6 +8,7 @@ public class InputReader : ScriptableObject, IPlayerActions
 {
     public event Action<bool> PrimaryFireEvent = delegate { }; 
     public event Action<Vector2> MovementEvent = delegate { };
+    public event Action<float> AccelerateEvent = delegate { };
     
     public Vector2 AimPosition { get; private set; }
     
@@ -51,5 +52,19 @@ public class InputReader : ScriptableObject, IPlayerActions
     public void OnAim(InputAction.CallbackContext context)
     {
         AimPosition = context.ReadValue<Vector2>();
+    }
+
+    public void OnAccelerate(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            Debug.Log(context.ReadValue<float>());
+            AccelerateEvent?.Invoke(1.5f);
+        }
+        else if (context.canceled)
+        {
+            Debug.Log(context.ReadValue<float>());
+            AccelerateEvent?.Invoke(1f);
+        }
     }
 }
