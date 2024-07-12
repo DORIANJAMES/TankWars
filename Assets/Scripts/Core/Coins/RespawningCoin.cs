@@ -1,16 +1,15 @@
 using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
-namespace Core.Coins
-{
-    public class RespawningCoin : Coin
+public class RespawningCoin : Coin
     {
     
         public event Action<RespawningCoin> OnCollected;
-    
-    
+        
         private Vector3 _previousPosition;
-
+        
+        [SerializeField] private float turnSpeed;
         private void Update()
         {
             if (_previousPosition != transform.position)
@@ -19,6 +18,7 @@ namespace Core.Coins
             }
 
             _previousPosition = transform.position;
+            SpinForever();
         }
 
         public override int Collect()
@@ -43,5 +43,10 @@ namespace Core.Coins
         {
             alreadyCollected = false;
         }
+
+        public void SpinForever()
+        {
+            
+            transform.Rotate(0, 2 * turnSpeed, 0);
+        }
     }
-}

@@ -1,11 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Security;
-using Core.Coins;
 using Unity.Netcode;
 using UnityEngine;
-using UnityEngine.SocialPlatforms;
-
 public class CoinSpawner : NetworkBehaviour
 {
     [SerializeField] private RespawningCoin coinPrefab;

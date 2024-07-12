@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 
+
 public abstract class Coin : NetworkBehaviour
 {
     [SerializeField] private SpriteRenderer spriteRenderer;
