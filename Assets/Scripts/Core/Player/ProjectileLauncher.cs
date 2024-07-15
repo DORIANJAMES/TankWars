@@ -39,8 +39,10 @@ public class ProjectileLauncher : NetworkBehaviour
 
         if (!IsOwner)
             return;
-        
-        timer -= Time.deltaTime;
+        if (timer > 0)
+        {
+            timer -= Time.deltaTime;
+        }
             
         if (!shouldFire)
             return;
