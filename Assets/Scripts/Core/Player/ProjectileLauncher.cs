@@ -10,6 +10,7 @@ public class ProjectileLauncher : NetworkBehaviour
     [Header("References")] [SerializeField]
     private GameObject serverProjectilePrefab;
 
+    [SerializeField] private CoinWallet wallet;
     [SerializeField] private GameObject clientProjectilePrefab;
     [SerializeField] private GameObject muzzleFlash;
     [SerializeField] private Collider2D playerCollider;
@@ -19,9 +20,10 @@ public class ProjectileLauncher : NetworkBehaviour
     [Header("Settings")] [SerializeField] private float projectileSpeed = 10f;
     [SerializeField] private float fireRate = 0.75f;
     [SerializeField] private float muzzleFlashDuration = 0.0075f;
+    [SerializeField] private int costFire;
 
     private bool shouldFire;
-    private float previousFireTime;
+    private float timer;
     private float muzzleFlashTimer;
 
     void Update()
@@ -35,22 +37,37 @@ public class ProjectileLauncher : NetworkBehaviour
             }
         }
 
-        if (!shouldFire)
-            return;
         if (!IsOwner)
             return;
-
-        if (Time.time < (1 / fireRate) + previousFireTime)
+        
+        timer -= Time.deltaTime;
+            
+        if (!shouldFire)
             return;
+        
+        if (timer > 0)
+            return;
+
+        if (wallet.TotalCoins.Value < costFire)
+        {
+            return;
+        }
         
         PrimaryFireServerRPC(projectileSpawnPoint.position, projectileSpawnPoint.up);
         SpawnDummyProjectile(projectileSpawnPoint.position, projectileSpawnPoint.up);
-        previousFireTime = Time.time;
+        timer = 1 / fireRate;
+        wallet.SpendCoins(costFire);
+        
+        
     }
 
     [ServerRpc]
     private void PrimaryFireServerRPC(Vector3 spawnPoint, Vector3 direction)
     {
+        if (wallet.TotalCoins.Value < costFire)
+        {
+            return;
+        }
         GameObject projectileInstance = Instantiate(serverProjectilePrefab, spawnPoint, Quaternion.identity);
         projectileInstance.transform.up = direction;
         Physics2D.IgnoreCollision(playerCollider, projectileInstance.GetComponent<Collider2D>());

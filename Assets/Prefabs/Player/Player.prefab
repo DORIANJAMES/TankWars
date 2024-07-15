@@ -634,7 +634,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 957608326
+  GlobalObjectIdHash: 2369623797
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -746,6 +746,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serverProjectilePrefab: {fileID: 5971070519042212602, guid: 819d681793a8b464b93ba9f971362f78, type: 3}
+  wallet: {fileID: 3128709057130646568}
   clientProjectilePrefab: {fileID: 8959211866104781690, guid: 1c275de1dcbad41f6a8c267b88a75e20, type: 3}
   muzzleFlash: {fileID: 6078567771236815977}
   playerCollider: {fileID: 880516247357671301}
@@ -754,6 +755,7 @@ MonoBehaviour:
   projectileSpeed: 30
   fireRate: 0.75
   muzzleFlashDuration: 0.0075
+  costFire: 2
 --- !u!114 &2943468694629525452
 MonoBehaviour:
   m_ObjectHideFlags: 0
