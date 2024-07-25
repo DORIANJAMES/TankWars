@@ -466,8 +466,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: \uf06e
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 03235a4f893ac47c79070d7053228588, type: 2}
-  m_sharedMaterial: {fileID: 7172556881444378707, guid: 03235a4f893ac47c79070d7053228588, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 842d55eddeb6b4ea98a36b12decf646a, type: 2}
+  m_sharedMaterial: {fileID: 1080604911070460173, guid: 842d55eddeb6b4ea98a36b12decf646a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1185,7 +1185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinPrefab: {fileID: 5713015582454365386, guid: 387232629aeb14b0384cddc2fe1ff288, type: 3}
-  maxCoins: 2000
+  maxCoins: 500
   coinValue: 10
   xSpawnRange: {x: -245, y: 245}
   ySpawnRange: {x: -245, y: 245}

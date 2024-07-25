@@ -46,6 +46,6 @@ public class RespawningCoin : Coin
 
         public void SpinForever()
         {
-            transform.Rotate(0, 2 * turnSpeed, 0);
+            transform.Rotate(0, 2 * turnSpeed * Time.deltaTime, 0);
         }
     }
