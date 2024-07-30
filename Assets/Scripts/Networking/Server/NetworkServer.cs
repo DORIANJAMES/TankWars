@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Unity.Netcode;
@@ -5,7 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 
-public class NetworkServer
+public class NetworkServer : IDisposable
 {
     private NetworkManager _networkManager;
     private Dictionary<ulong, string> _clientIdToAuth = new Dictionary<ulong, string>();
@@ -26,12 +27,8 @@ public class NetworkServer
         // Converting String to Json
         UserData userData = JsonUtility.FromJson<UserData>(payload);
         
-
         _clientIdToAuth[request.ClientNetworkId] = userData.userAuthId;
         _authIdToUserData[userData.userAuthId] = userData;
-
-        
-        
         
         response.Approved = true;
         response.CreatePlayerObject = true;
@@ -40,10 +37,6 @@ public class NetworkServer
     private void OnNetworkReady()
     {
         _networkManager.OnClientDisconnectCallback += OnClientDisconnect;
-        foreach (var authData in _authIdToUserData)
-        {
-            Debug.Log(authData.Key + " " + authData.Value.userName);
-        }
     }
 
     private void OnClientDisconnect(ulong clientId)
@@ -53,11 +46,18 @@ public class NetworkServer
             _clientIdToAuth.Remove(clientId);
             _authIdToUserData.Remove(authId);
         }
-        foreach (var authData in _authIdToUserData)
+    }
+
+    public void Dispose()
+    {
+        if (_networkManager != null)
         {
-            if (authData.Key != null)
-            { 
-                Debug.Log(authData.Key + " " + authData.Value.userName);
+            _networkManager.ConnectionApprovalCallback -= ApprovalCheck;
+            _networkManager.OnServerStarted -= OnNetworkReady;
+            _networkManager.OnClientDisconnectCallback -= OnClientDisconnect;
+            if (_networkManager.IsListening)
+            {
+                _networkManager.Shutdown();
             }
         }
     }

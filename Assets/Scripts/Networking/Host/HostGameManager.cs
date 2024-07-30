@@ -15,7 +15,7 @@ using Unity.Services.Lobbies.Models;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
-public class HostGameManager
+public class HostGameManager : IDisposable
 {
    [SerializeField] private string gameSceneName = "BigMap";
    private const int MaxConnections = 20;
@@ -102,5 +102,25 @@ public class HostGameManager
          Lobbies.Instance.SendHeartbeatPingAsync(lobbyId);
          yield return delay;
       }
+   }
+
+   public async void Dispose()
+   {
+      HostSingleton.Instance.StopCoroutine(nameof(HeartbeatLobby));
+      if (string.IsNullOrEmpty(lobbyId))
+      {
+         try
+         {
+            await Lobbies.Instance.DeleteLobbyAsync(lobbyId);
+         }
+         catch (LobbyServiceException e)
+         {
+            Debug.Log(e);
+            return;
+         }
+
+         lobbyId = string.Empty;
+      }
+      _networkServer?.Dispose();
    }
 }
