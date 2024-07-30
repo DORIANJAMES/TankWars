@@ -1,6 +1,6 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
+using TMPro;
+using Unity.Netcode;
 using UnityEngine;
 
 public class InGameCameraZoom : MonoBehaviour
@@ -10,9 +10,12 @@ public class InGameCameraZoom : MonoBehaviour
     [SerializeField] private float zoomSpeed;
     [SerializeField] private float initialZoom;
     [SerializeField] private bool isZoomedIn;
+    [SerializeField] private TMP_Text sessionCode;
+    
 
     private void Start()
     {
+        sessionCode.text = PlayerPrefs.GetString("JoinCode", string.Empty);
         Camera.main.orthographicSize = initialZoom;
     }
 

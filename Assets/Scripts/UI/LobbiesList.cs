@@ -60,10 +60,6 @@ public class LobbiesList : MonoBehaviour
             return;
         }
 
-
-        
-        
-        
         _isRefreshing = false;
     }
 

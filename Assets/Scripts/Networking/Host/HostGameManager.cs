@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 using System.Threading.Tasks;
 using Unity.Services.Relay;
@@ -8,9 +9,11 @@ using Unity.Services.Relay.Models;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
 using Unity.Networking.Transport.Relay;
+using Unity.Services.Authentication;
 using Unity.Services.Lobbies;
 using Unity.Services.Lobbies.Models;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 public class HostGameManager
 {
@@ -19,6 +22,7 @@ public class HostGameManager
    private Allocation _allocation;
    private string _joinCode;
    private string lobbyId;
+   private NetworkServer _networkServer;
    
    public async Task StartHostAsync()
    {
@@ -35,7 +39,7 @@ public class HostGameManager
       try
       {
          _joinCode = await Relay.Instance.GetJoinCodeAsync(_allocation.AllocationId);
-         Debug.Log(_joinCode);
+         PlayerPrefs.SetString("JoinCode",_joinCode);
       }
       catch (Exception e)
       {
@@ -61,7 +65,8 @@ public class HostGameManager
                   )
             }
          };
-         Lobby lobby = await Lobbies.Instance.CreateLobbyAsync("My Lobby", MaxConnections, lobbyOptions);
+         string playerName = PlayerPrefs.GetString(NameSelector.PlayerNameKey, "Unknown");
+         Lobby lobby = await Lobbies.Instance.CreateLobbyAsync(playerName+"'s Lobby", MaxConnections, lobbyOptions);
          lobbyId = lobby.Id;
          HostSingleton.Instance.StartCoroutine(HeartbeatLobby(15));
       }
@@ -70,6 +75,19 @@ public class HostGameManager
          Console.WriteLine(e);
          return;
       }
+
+      _networkServer = new NetworkServer(NetworkManager.Singleton);
+      
+      UserData userData = new UserData
+      {
+         userName = PlayerPrefs.GetString(NameSelector.PlayerNameKey, "Missing Name"),
+         userAuthId = AuthenticationService.Instance.PlayerId
+      };
+        
+      string payLoad = JsonUtility.ToJson(userData);
+      byte[] payLoadBytes = Encoding.UTF8.GetBytes(payLoad);
+
+      NetworkManager.Singleton.NetworkConfig.ConnectionData = payLoadBytes;
 
       NetworkManager.Singleton.StartHost();
 

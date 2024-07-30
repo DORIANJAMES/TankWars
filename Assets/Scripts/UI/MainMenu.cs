@@ -12,7 +12,7 @@ public class MainMenu : MonoBehaviour
 
     private void OnEnable()
     {
-        playerPrefsName.text = PlayerPrefs.GetString("PlayerKey", string.Empty);
+        playerPrefsName.text = PlayerPrefs.GetString(NameSelector.PlayerNameKey, string.Empty);
     }
 
     public async void StartHost()
