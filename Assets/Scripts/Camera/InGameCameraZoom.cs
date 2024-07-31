@@ -1,47 +1,61 @@
 using System.Collections;
+using UnityEngine.UI;
 using TMPro;
-using Unity.Netcode;
 using UnityEngine;
+using Cinemachine;
+using Unity.Netcode;
 
-public class InGameCameraZoom : MonoBehaviour
+
+public class InGameCameraZoom : NetworkBehaviour
 {
-
     [SerializeField] private float targetZoom;
     [SerializeField] private float zoomSpeed;
     [SerializeField] private float initialZoom;
     [SerializeField] private bool isZoomedIn;
     [SerializeField] private TMP_Text sessionCode;
-    
+    [SerializeField] private Button changeButton;
+    [SerializeField] private GameObject player;
+    [SerializeField] private CinemachineVirtualCamera virtualCamera;
 
-    private void Start()
+
+    public override void OnNetworkSpawn()
     {
-        sessionCode.text = PlayerPrefs.GetString("JoinCode", string.Empty);
-        Camera.main.orthographicSize = initialZoom;
+        virtualCamera = GameObject.FindGameObjectWithTag("PlayerVirtualCamera").GetComponent<CinemachineVirtualCamera>();
+        sessionCode.text = PlayerPrefs.GetString("JoinCode",string.Empty);
     }
 
-    public void ToggleZoom()
+    public void OnButtonPressed()
     {
-        if (isZoomedIn)
+        if (IsServer && IsLocalPlayer)
         {
-            StartCoroutine(ZoomCoroutine(initialZoom));
-        }
-        else
+            InnerToggleZoom(targetZoom);
+        } else if (IsClient && IsLocalPlayer)
         {
-            StartCoroutine(ZoomCoroutine(targetZoom));
+            InnerToggleZoomServerRPC(targetZoom);
         }
-        isZoomedIn = !isZoomedIn;
     }
 
-    private IEnumerator ZoomCoroutine(float target)
+    private void InnerToggleZoom(float target)
     {
-        float startZoom = Camera.main.orthographicSize;
-        float t = 0f;
+        StartCoroutine(ZoomToggleLerper(target));
+    }
+
+    [ServerRpc]
+    private void InnerToggleZoomServerRPC(float target)
+    {
+        InnerToggleZoom(target);
+    }
+
+    private IEnumerator ZoomToggleLerper(float target)
+    {
+        var startZoom = virtualCamera.m_Lens.OrthographicSize;
+        var t = 0f;
         while (t < 1f)
         {
-            Camera.main.orthographicSize = Mathf.Lerp(startZoom, target, t);
+            virtualCamera.m_Lens.OrthographicSize = Mathf.Lerp(startZoom, targetZoom, t);
             t += Time.deltaTime * zoomSpeed;
             yield return null;
         }
-        Camera.main.orthographicSize = target;
+        virtualCamera.m_Lens.OrthographicSize = target;
     }
 }

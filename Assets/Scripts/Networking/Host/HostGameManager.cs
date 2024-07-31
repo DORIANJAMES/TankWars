@@ -22,7 +22,7 @@ public class HostGameManager : IDisposable
    private Allocation _allocation;
    private string _joinCode;
    private string lobbyId;
-   private NetworkServer _networkServer;
+   public NetworkServer networkServer { get; private set; }
    
    public async Task StartHostAsync()
    {
@@ -76,7 +76,7 @@ public class HostGameManager : IDisposable
          return;
       }
 
-      _networkServer = new NetworkServer(NetworkManager.Singleton);
+      networkServer = new NetworkServer(NetworkManager.Singleton);
       
       UserData userData = new UserData
       {
@@ -121,6 +121,6 @@ public class HostGameManager : IDisposable
 
          lobbyId = string.Empty;
       }
-      _networkServer?.Dispose();
+      networkServer?.Dispose();
    }
 }

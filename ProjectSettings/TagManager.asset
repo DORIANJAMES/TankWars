@@ -8,6 +8,7 @@ TagManager:
   - Projectile
   - Coin
   - CoinParent
+  - PlayerVirtualCamera
   layers:
   - Default
   - TransparentFX

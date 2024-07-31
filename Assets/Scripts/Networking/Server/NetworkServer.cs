@@ -39,6 +39,19 @@ public class NetworkServer : IDisposable
         _networkManager.OnClientDisconnectCallback += OnClientDisconnect;
     }
 
+    public UserData GetUserDataByClientId(ulong clientId)
+    {
+        if (_clientIdToAuth.TryGetValue(clientId, out string authId))
+        {
+            if (_authIdToUserData.TryGetValue(authId, out UserData data))
+            {
+                return data;
+            }
+            return null;
+        }
+        return null;
+    }
+
     private void OnClientDisconnect(ulong clientId)
     {
         if (_clientIdToAuth.TryGetValue(clientId, out string authId))
