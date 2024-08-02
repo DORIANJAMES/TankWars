@@ -15,18 +15,15 @@ public class RespawnHandler : NetworkBehaviour
             return;
         }
 
-        TankPlayer[] players = FindObjectsOfType<TankPlayer>();
+        TankPlayer[] players = FindObjectsByType<TankPlayer>(FindObjectsSortMode.None);
 
         foreach (var player in players)
         {
             HandlePlayerSpawned(player);
         }
         
-
         TankPlayer.OnPlayerSpawned += HandlePlayerSpawned;
         TankPlayer.OnPlayerDespawn += HandlePlayerDespawned;
-        
-        
     }
 
     
