@@ -859,6 +859,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cinemachineVirtualCamera: {fileID: 6399994507479052549}
   <Health>k__BackingField: {fileID: 2943468694629525452}
+  <Wallet>k__BackingField: {fileID: 3128709057130646568}
   playerName:
     m_InternalValue:
       utf8LengthInBytes: 0

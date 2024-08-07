@@ -66,10 +66,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1- Dorian - 20
+  m_text: 1. Dorian - 20
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a9969a26c2d7c49cf884fe4154de462b, type: 2}
+  m_sharedMaterial: {fileID: -1144363156474007404, guid: a9969a26c2d7c49cf884fe4154de462b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -147,3 +147,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e4b61d46b4a2430cada50dd069b7c05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  displayText: {fileID: 5530719696035649730}
+  myColor: {r: 0, g: 0.754717, b: 0.020465491, a: 1}

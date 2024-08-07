@@ -9,6 +9,7 @@ public class TankPlayer : NetworkBehaviour
 {
     [SerializeField] public CinemachineVirtualCamera cinemachineVirtualCamera;
     [field: SerializeField] public Health Health { get; private set; }
+    [field: SerializeField] public CoinWallet Wallet { get; private set; }
     public NetworkVariable<FixedString32Bytes> playerName = new NetworkVariable<FixedString32Bytes>();
 
     public static event Action<TankPlayer> OnPlayerSpawned;

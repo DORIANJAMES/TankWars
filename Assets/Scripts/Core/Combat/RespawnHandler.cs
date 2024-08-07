@@ -7,7 +7,9 @@ using UnityEngine;
 
 public class RespawnHandler : NetworkBehaviour
 {
-    [SerializeField] private NetworkObject playerPrefab;
+    [SerializeField] private TankPlayer playerPrefab;
+    [SerializeField] private float keptCoinPercentage;
+    [SerializeField] private int keptCoins;
     public override void OnNetworkSpawn()
     {
         if (!IsServer)
@@ -49,15 +51,17 @@ public class RespawnHandler : NetworkBehaviour
 
     private void HandlePlayerDie(TankPlayer player)
     {
+        keptCoins = (int) (player.Wallet.TotalCoins.Value * (keptCoinPercentage / 100));
         Destroy(player.gameObject);
-        StartCoroutine(RespawnPlayer(player.OwnerClientId));
+        StartCoroutine(RespawnPlayer(player.OwnerClientId, keptCoins));
     }
 
-    private IEnumerator RespawnPlayer(ulong ownerClientId)
+    private IEnumerator RespawnPlayer(ulong ownerClientId, int newCoins)
     {
         yield return null;
-        NetworkObject playerInstance = Instantiate(playerPrefab, SpawnPoint.GetRandomSpawnPos(), Quaternion.identity);
+        TankPlayer playerInstance = Instantiate(playerPrefab, SpawnPoint.GetRandomSpawnPos(), Quaternion.identity);
         
-        playerInstance.SpawnAsPlayerObject(ownerClientId);
+        playerInstance.NetworkObject.SpawnAsPlayerObject(ownerClientId);
+        playerInstance.Wallet.TotalCoins.Value += newCoins;
     }
 }
