@@ -17,7 +17,8 @@ public class ProjectileLauncher : NetworkBehaviour
     [SerializeField] private Transform projectileSpawnPoint;
     [SerializeField] private InputReader inputReader;
 
-    [Header("Settings")] [SerializeField] private float projectileSpeed = 10f;
+    [Header("Settings")] 
+    [SerializeField] private float projectileSpeed = 10f;
     [SerializeField] private float fireRate = 0.75f;
     [SerializeField] private float muzzleFlashDuration = 0.0075f;
     [SerializeField] private int costFire;
@@ -58,7 +59,7 @@ public class ProjectileLauncher : NetworkBehaviour
         PrimaryFireServerRPC(projectileSpawnPoint.position, projectileSpawnPoint.up);
         SpawnDummyProjectile(projectileSpawnPoint.position, projectileSpawnPoint.up);
         timer = 1 / fireRate;
-        wallet.SpendCoins(costFire);
+        //wallet.SpendCoins(costFire);
         
         
     }
@@ -76,13 +77,13 @@ public class ProjectileLauncher : NetworkBehaviour
         if (projectileInstance.TryGetComponent<DealDamage>(out DealDamage dd))
         {
             dd.SetOwner(OwnerClientId);
-            
         }
         if (projectileInstance.TryGetComponent<Rigidbody2D>(out Rigidbody2D rb))
         {
             rb.velocity = rb.transform.up * projectileSpeed;
         }
         SpawnDummyProjectileClientRPC(spawnPoint, direction);
+        wallet.SpendCoins(costFire);
     }
 
     [ClientRpc]
