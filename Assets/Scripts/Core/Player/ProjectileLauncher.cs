@@ -50,7 +50,7 @@ public class ProjectileLauncher : NetworkBehaviour
         if (timer > 0)
             return;
 
-        if (wallet.TotalCoins.Value < costFire)
+        if (wallet.totalCoins.Value < costFire)
         {
             return;
         }
@@ -66,7 +66,7 @@ public class ProjectileLauncher : NetworkBehaviour
     [ServerRpc]
     private void PrimaryFireServerRPC(Vector3 spawnPoint, Vector3 direction)
     {
-        if (wallet.TotalCoins.Value < costFire)
+        if (wallet.totalCoins.Value < costFire)
         {
             return;
         }
