@@ -25,12 +25,12 @@ namespace Core.Combat
          ModifyHealth(-damagaValue);
       }
       
-      public void RestoreDamage(int healValue)
+      public void RestoreHealth(int healValue)
       {
          ModifyHealth(healValue);
       }
       
-      private void ModifyHealth(int value)
+      public void ModifyHealth(int value)
       {
          if (isDead)
             return;
