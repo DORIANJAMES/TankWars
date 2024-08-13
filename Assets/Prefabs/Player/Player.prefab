@@ -114,7 +114,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5944761130444963006}
   - component: {fileID: 5450878529176578075}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Turret
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -201,7 +201,7 @@ GameObject:
   - component: {fileID: 8266034066654469519}
   - component: {fileID: 5594946624141241902}
   - component: {fileID: 8148847783517201834}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: HealthBarBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -276,7 +276,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 216021399816562925}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ProjectileSpawnPoint
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -308,7 +308,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5660603686805606009}
   - component: {fileID: 1978970741932863504}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: TurretPivot
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -373,7 +373,7 @@ GameObject:
   - component: {fileID: 4740717737982473855}
   - component: {fileID: 2304720315363677872}
   - component: {fileID: 7310862680233165120}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -542,7 +542,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6468029960867539477}
   - component: {fileID: 4772958948233270171}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: TankBody
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -628,7 +628,7 @@ GameObject:
   - component: {fileID: 3281335283449913853}
   - component: {fileID: 880516247357671301}
   - component: {fileID: 7092163292163348696}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: TankTreads
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -798,7 +798,7 @@ GameObject:
   - component: {fileID: 2943468694629525452}
   - component: {fileID: 708853948566983142}
   - component: {fileID: 3128709057130646568}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1031,7 +1031,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4363157624457468488}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -1102,7 +1102,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5862395821720576932}
   - component: {fileID: 5175649110810107494}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: MuzzleFlash
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1187,7 +1187,7 @@ GameObject:
   - component: {fileID: 6676080468521199692}
   - component: {fileID: 4794444428323774517}
   - component: {fileID: 7369696078312535449}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: OverheadCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1263,7 +1263,7 @@ GameObject:
   - component: {fileID: 3548257893358485908}
   - component: {fileID: 8676455861566179574}
   - component: {fileID: 4390832126947180518}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: HBBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1339,7 +1339,7 @@ GameObject:
   - component: {fileID: 396544015677404209}
   - component: {fileID: 3690716244876483280}
   - component: {fileID: 862518955050356791}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: DisplayNameText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
