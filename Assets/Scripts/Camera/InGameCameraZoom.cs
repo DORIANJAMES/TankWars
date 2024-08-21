@@ -44,6 +44,7 @@ public class InGameCameraZoom : NetworkBehaviour
     private void InnerToggleZoomServerRPC(float target)
     {
         InnerToggleZoom(target);
+        
     }
 
     private IEnumerator ZoomToggleLerper(float target)
