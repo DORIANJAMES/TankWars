@@ -116,5 +116,5 @@ public class JoystickVirtualController : MonoBehaviour
         var results = new System.Collections.Generic.List<RaycastResult>();
         EventSystem.current.RaycastAll(eventData, results);
         return results.Count > 0;
-    }
+    } 
 }
