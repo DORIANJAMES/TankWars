@@ -1,3 +1,4 @@
+using System;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -7,14 +8,19 @@ public class PlayerMovement : NetworkBehaviour
     [SerializeField] private InputReader inputReader;
     [SerializeField] private Transform bodyTransform;
     [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private JoystickVirtualController joystickVirtualController;
     
     [Header("Settings")]
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float turningRate = 30f;
-
     [SerializeField] private Vector2 previousMovementInput;
 
     private float canAccelerete = 1f;
+
+    private void Start()
+    {
+        joystickVirtualController = FindAnyObjectByType<JoystickVirtualController>();
+    }
     
 
     public override void OnNetworkSpawn()
@@ -23,6 +29,7 @@ public class PlayerMovement : NetworkBehaviour
             return;
         inputReader.MovementEvent += HandleMove;
         inputReader.AccelerateEvent += AccelaretionBool;
+        
     }
 
     private void AccelaretionBool(float obj)
@@ -54,10 +61,12 @@ public class PlayerMovement : NetworkBehaviour
 
         float moveDireciton = previousMovementInput.y * moveSpeed * canAccelerete;
         rb.velocity = (Vector2)bodyTransform.up * moveDireciton;
+        joystickVirtualController = FindAnyObjectByType<JoystickVirtualController>();
     }
 
     public void  HandleMove(Vector2 movementInput)
     {
         previousMovementInput = movementInput;
     }
+    
 }

@@ -12,8 +12,6 @@ public class InputReader : ScriptableObject, IPlayerActions
     
     public Vector2 AimPosition { get; private set; }
     
-    
-    
     private Controls controls;
     private void OnEnable()
     {

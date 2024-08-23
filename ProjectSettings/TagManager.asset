@@ -9,6 +9,7 @@ TagManager:
   - Coin
   - CoinParent
   - PlayerVirtualCamera
+  - MoveJoystick
   layers:
   - Default
   - TransparentFX

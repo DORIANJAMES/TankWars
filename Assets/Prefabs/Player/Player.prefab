@@ -921,8 +921,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 957608326
-  InScenePlacedSourceGlobalObjectIdHash: 0
+  GlobalObjectIdHash: 2369623797
+  InScenePlacedSourceGlobalObjectIdHash: 2369623797
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 1
@@ -1055,6 +1055,7 @@ MonoBehaviour:
   inputReader: {fileID: 11400000, guid: 6eb0230fb282c44b88a38036f4b8468d, type: 2}
   bodyTransform: {fileID: 9069430658561115504}
   rb: {fileID: 7471496346222463764}
+  joystickVirtualController: {fileID: 751600886316127431, guid: fab67759f77a74953a0f691b5020b41e, type: 3}
   moveSpeed: 5
   turningRate: 100
   previousMovementInput: {x: 0, y: 0}

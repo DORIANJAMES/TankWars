@@ -2,7 +2,6 @@ using System.Collections;
 using Cinemachine;
 using Unity.Netcode;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class ActionButtons : NetworkBehaviour
@@ -83,5 +82,4 @@ public class ActionButtons : NetworkBehaviour
         Camera.main.orthographicSize = cmVirtualCam.m_Lens.OrthographicSize;
         Debug.Log("Zooming completed: " + cmVirtualCam.m_Lens.OrthographicSize);
     }
-    
 }
