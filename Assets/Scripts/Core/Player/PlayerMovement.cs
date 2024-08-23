@@ -1,6 +1,6 @@
-using System;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class PlayerMovement : NetworkBehaviour
 {
@@ -29,7 +29,7 @@ public class PlayerMovement : NetworkBehaviour
             return;
         inputReader.MovementEvent += HandleMove;
         inputReader.AccelerateEvent += AccelaretionBool;
-        
+        joystickVirtualController = FindAnyObjectByType<JoystickVirtualController>();
     }
 
     private void AccelaretionBool(float obj)
@@ -61,7 +61,6 @@ public class PlayerMovement : NetworkBehaviour
 
         float moveDireciton = previousMovementInput.y * moveSpeed * canAccelerete;
         rb.velocity = (Vector2)bodyTransform.up * moveDireciton;
-        joystickVirtualController = FindAnyObjectByType<JoystickVirtualController>();
     }
 
     public void  HandleMove(Vector2 movementInput)

@@ -11,7 +11,6 @@ public class ApplicationController : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
         await LaunchInMode(SystemInfo.graphicsDeviceType == UnityEngine.Rendering.GraphicsDeviceType.Null);
-        
     }
 
     private async Task LaunchInMode(bool isDedicatedServer)

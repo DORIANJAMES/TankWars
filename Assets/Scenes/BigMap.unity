@@ -8831,8 +8831,8 @@ MonoBehaviour:
   range: 4
   moveDirection: {x: 0, y: 0}
   aimDirection: {x: 0, y: 0}
-  moveActive: 0
   aimActive: 0
+  moveActive: 0
 --- !u!1001 &1680564903785380526
 PrefabInstance:
   m_ObjectHideFlags: 0

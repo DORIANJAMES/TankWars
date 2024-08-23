@@ -18,8 +18,8 @@ public class JoystickVirtualController : MonoBehaviour
     [SerializeField] private float range;
     [SerializeField] private Vector2 moveDirection;
     [SerializeField] private Vector2 aimDirection;
-    [SerializeField] private bool moveActive;
     [SerializeField] private bool aimActive;
+    public bool moveActive { get; private set; }
 
     public event Action<Vector2> MoveJoystick = delegate {};
     public event Action AimJoystick = delegate {};
@@ -90,6 +90,16 @@ public class JoystickVirtualController : MonoBehaviour
                 aimDirection = (aimKnob.position - aimCenter.position).normalized;
                 AimJoystick?.Invoke();
             }
+        }
+        else if (Input.GetMouseButtonUp(0))
+        {
+            this.MoveJoystick -= playerMovement.HandleMove;
+            MoveJoystick?.Invoke(Vector2.zero);
+            moveActive = false;
+            aimActive = false;
+            ShowJoystick(false, false);
+            moveDirection = Vector2.zero;
+            aimDirection = Vector2.zero;
         }
         else
         {
