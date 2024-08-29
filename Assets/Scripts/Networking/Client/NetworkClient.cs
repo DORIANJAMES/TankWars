@@ -20,6 +20,11 @@ public class NetworkClient : IDisposable
         // if we are a server to getting rid of shoting down the session every disconnection of other players.
         if (clientId != 0 && clientId != _networkManager.LocalClientId) { return; }
         
+       Disconnect();
+    }
+    
+    public void Disconnect()
+    {
         // Incase we are in the wrong scene, we should go back to the menu scene.
         if (SceneManager.GetActiveScene().name != MenuSceneName)
         {
@@ -40,4 +45,6 @@ public class NetworkClient : IDisposable
             _networkManager.OnClientDisconnectCallback -= OnClientDisconnect;
         }
     }
+
+    
 }

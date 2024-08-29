@@ -90,6 +90,7 @@ public class HostGameManager : IDisposable
       NetworkManager.Singleton.NetworkConfig.ConnectionData = payLoadBytes;
 
       NetworkManager.Singleton.StartHost();
+      networkServer.OnClientLeft += HandleClientLeft; 
 
       NetworkManager.Singleton.SceneManager.LoadScene(gameSceneName, LoadSceneMode.Single);
    }
@@ -104,9 +105,15 @@ public class HostGameManager : IDisposable
       }
    }
 
-   public async void Dispose()
+   public void Dispose()
+   {
+      ShutDown();
+   }
+
+   public async void ShutDown()
    {
       HostSingleton.Instance.StopCoroutine(nameof(HeartbeatLobby));
+      
       if (string.IsNullOrEmpty(lobbyId))
       {
          try
@@ -121,6 +128,19 @@ public class HostGameManager : IDisposable
 
          lobbyId = string.Empty;
       }
+      networkServer.OnClientLeft -= HandleClientLeft; 
       networkServer?.Dispose();
+   }
+
+   private async void HandleClientLeft(string authId)
+   {
+      try
+      {
+         await LobbyService.Instance.RemovePlayerAsync(lobbyId, authId);
+      }
+      catch (LobbyServiceException e)
+      {
+         Debug.Log(e);
+      }
    }
 }
