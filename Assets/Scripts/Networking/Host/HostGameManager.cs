@@ -114,6 +114,8 @@ public class HostGameManager : IDisposable
    {
       HostSingleton.Instance.StopCoroutine(nameof(HeartbeatLobby));
       
+      networkServer.OnClientLeft -= HandleClientLeft;
+      
       if (string.IsNullOrEmpty(lobbyId))
       {
          try
@@ -128,7 +130,7 @@ public class HostGameManager : IDisposable
 
          lobbyId = string.Empty;
       }
-      networkServer.OnClientLeft -= HandleClientLeft; 
+      
       networkServer?.Dispose();
    }
 
