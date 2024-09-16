@@ -9,6 +9,19 @@ public class MainMenu : MonoBehaviour
 {
     [SerializeField] private TMP_InputField joinCodeField;
     [SerializeField] private TMP_Text playerPrefsName;
+    [SerializeField] private TMP_Text findMatchStatusText;
+    [SerializeField] private Texture2D cursorTexture;
+
+    private void Start()
+    {
+        if (ClientSingleton.Instance == null)
+        {
+            return;
+        }
+
+        Vector2 hotSpot = new Vector2(cursorTexture.width / 20, cursorTexture.height / 20);
+        Cursor.SetCursor(cursorTexture, hotSpot, CursorMode.Auto);
+    }
 
     private void OnEnable()
     {
