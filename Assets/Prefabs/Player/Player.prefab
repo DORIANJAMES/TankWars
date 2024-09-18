@@ -921,7 +921,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 957608326
+  GlobalObjectIdHash: 2369623797
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -944,6 +944,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   miniMapSpriteRenderer: {fileID: 877466621804082857}
   cinemachineVirtualCamera: {fileID: 6399994507479052549}
+  crosshair: {fileID: 2800000, guid: 87ee59660d32447b9bf2d5e0b3a445cd, type: 3}
   <Health>k__BackingField: {fileID: 2943468694629525452}
   <Wallet>k__BackingField: {fileID: 3128709057130646568}
   playerName:

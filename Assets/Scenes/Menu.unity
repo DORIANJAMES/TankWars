@@ -614,7 +614,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 304442782}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 743996792}
+        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+        m_MethodName: FindMatchPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &304442782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1223,6 +1235,7 @@ MonoBehaviour:
   joinCodeField: {fileID: 1459553908}
   playerPrefsName: {fileID: 1152708918}
   findMatchStatusText: {fileID: 1152708918}
+  findMatchStatusButtonText: {fileID: 786622626}
   cursorTexture: {fileID: 2800000, guid: e72447a40009d4f06bbd5f6fa7499bf3, type: 3}
 --- !u!1 &786622624
 GameObject:

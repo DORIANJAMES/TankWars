@@ -11,6 +11,7 @@ public class TankPlayer : NetworkBehaviour
     [Header("References")] 
     [SerializeField] private SpriteRenderer miniMapSpriteRenderer;
     [SerializeField] public CinemachineVirtualCamera cinemachineVirtualCamera;
+    [SerializeField] private Texture2D crosshair;
     [field: SerializeField] public Health Health { get; private set; }
     [field: SerializeField] public CoinWallet Wallet { get; private set; }
     public NetworkVariable<FixedString32Bytes> playerName = new NetworkVariable<FixedString32Bytes>();
@@ -35,6 +36,7 @@ public class TankPlayer : NetworkBehaviour
             cinemachineVirtualCamera.Priority = 15;
             miniMapSpriteRenderer.color = miniMapSpriteColor;
             miniMapSpriteRenderer.transform.localScale = miniMapSpriteRendederScale * 2;
+            Cursor.SetCursor(crosshair, new Vector2(crosshair.width/2,crosshair.height/2),CursorMode.Auto);
         }
     }
 

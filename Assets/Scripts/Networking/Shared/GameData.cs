@@ -13,7 +13,7 @@ public enum GameMode
     Default
 }
 
-public enum GamQueue
+public enum GameQueue
 {
     Solo,
     Team
@@ -24,7 +24,7 @@ public class UserData
 {
     public string userName;
     public string userAuthId;
-    public GameInfo userGamePreferences;
+    public GameInfo userGamePreferences = new GameInfo();
 }
 
 [Serializable]
@@ -32,9 +32,14 @@ public class GameInfo
 {
     public Map map;
     public GameMode gameMode;
-    public GamQueue gameQueue;
+    public GameQueue gameQueue;
     public string ToMultiplayQueue()
     {
-        return "";
+        return gameQueue switch
+        {
+            GameQueue.Solo => "solo-que",
+            GameQueue.Team => "team-que",
+            _ => "solo-que"
+        }; 
     }
 }
